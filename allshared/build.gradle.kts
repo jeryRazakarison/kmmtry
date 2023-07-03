@@ -1,15 +1,29 @@
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     kotlin("multiplatform")
-    kotlin("native.cocoapods")
+//    kotlin("native.cocoapods")
     id("co.touchlab.faktory.kmmbridge")
     `maven-publish`
 }
 
 kotlin {
-    ios()
+    ios{ // can be set for any of your targets
+        binaries {
+            framework("FRAMEWORK_NAME") {
+                isStatic = true // or false for dynamic framework
+            }
+        }
+    }
     // Note: iosSimulatorArm64 target requires that all dependencies have M1 support
     iosSimulatorArm64()
+
+//    iosX64 { // can be set for any of your targets
+//        binaries {
+//            framework("FRAMEWORK_NAME") {
+//                isStatic = true // or false for dynamic framework
+//            }
+//        }
+//    }
 
     sourceSets {
         val commonMain by getting {
@@ -33,17 +47,17 @@ kotlin {
         }
     }
 
-    cocoapods {
-        summary = "KMMBridgeKickStart sample"
-        homepage = "https://www.touchlab.co"
-        ios.deploymentTarget = "13.5"
-        extraSpecAttributes["libraries"] = "'c++', 'sqlite3'"
-
-        framework {
-            export(project(":analytics"))
-            isStatic = true
-        }
-    }
+//    cocoapods {
+//        summary = "KMMBridgeKickStart sample"
+//        homepage = "https://www.touchlab.co"
+//        ios.deploymentTarget = "13.5"
+//        extraSpecAttributes["libraries"] = "'c++', 'sqlite3'"
+//
+//        framework {
+//            export(project(":analytics"))
+//            isStatic = true
+//        }
+//    }
 }
 
 addGithubPackagesRepository()

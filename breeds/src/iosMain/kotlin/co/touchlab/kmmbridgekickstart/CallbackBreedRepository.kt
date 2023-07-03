@@ -5,6 +5,11 @@ import co.touchlab.kmmbridgekickstart.repository.BreedRepository
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 
+class LaClasseDeJery {
+    fun essaiPrint() {
+        println("Ca marche !!!")
+    }
+}
 class CallbackBreedRepository(private val breedRepository: BreedRepository) {
     private val mainScope = MainScope()
 
@@ -21,6 +26,7 @@ class CallbackBreedRepository(private val breedRepository: BreedRepository) {
             }
         }
     }
+
 
     fun refreshBreeds() {
         mainScope.launch { breedRepository.refreshBreeds() }
