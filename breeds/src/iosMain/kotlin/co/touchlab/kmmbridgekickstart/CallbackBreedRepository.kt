@@ -10,9 +10,14 @@ class LaClasseDeJery {
         println("Ca marche !!!")
     }
 }
+fun essaiPrint2() {
+    println("Ca marche !!!")
+}
 class CallbackBreedRepository(private val breedRepository: BreedRepository) {
     private val mainScope = MainScope()
-
+    fun essaiPrint3() {
+        println("Ca marche !!!")
+    }
     fun getBreeds(callback: (List<Breed>) -> Unit): Cancellable {
         val job = mainScope.launch {
             breedRepository.getBreeds().collect {
